@@ -33,11 +33,16 @@ public class DataServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		visitCount++;
-		if(request.getParameter("indexButton")!=null) {
+		if(request.getParameter("login")!=null) {
 			// this "button listener" is an example of dynamically creating
 			// partial html code that is forwarded to a jsp page to be displayed
+			String user = request.getParameter("un");
+			String password = request.getParameter("pw");
+			request.setAttribute("username", user);
+			request.setAttribute("password", password);
+			
 			String label1="selectionList";
-			String label1Value = "<select name=\"cars\">\r\n";
+			String label1Value = "<select name=\"activities\">\r\n";
 			ArrayList<String> myActs = pred.getActivities();
 			for (String string : myActs) {
 				label1Value += "	<option value=\""+string+"\">"+string+"</option>\r\n";
@@ -46,28 +51,20 @@ public class DataServlet extends HttpServlet {
 			label1Value += "  </select>";
 
 			request.setAttribute(label1,label1Value);
+			
+			
+			
 			RequestDispatcher rd=request.getRequestDispatcher("/using.jsp");
 			rd.forward(request,response); 		}
-		else if (request.getParameter("monday")!=null) {
-			// this "button listener" is an example of dynamically creating
-			// html code that is sent to the requesting browser
-			String userName = request.getParameter("userInput");
-			response.getWriter().append("<!DOCTYPE html>\r\n" +
-					"<html>\r\n" +
-					"<head>\r\n" +
-					"<meta charset=\"ISO-8859-1\">\r\n" +
-					"<title>A page served by Servlet!</title>\r\n" +
-					"</head>\r\n" +
-					"<body>\r\n");
-			if (userName!=null) {
-				response.getWriter().append("Hi "+userName +"<br>\r\n");
-			}
-			response.getWriter().append("Page Visited: "+visitCount+
-					"times<br><br>\r\n" +
-					"<a href=\"/project3/index.html\">Goto Homepage</a><br>\r\n" +
-					pred.toString()+
-					"</body>\r\n" +
-					"</html>");
+		else if(request.getParameter("doUsing")!=null) {
+			String currentActivity = request.getParameter("myact");
+			request.setAttribute("activity", currentActivity);
+			RequestDispatcher rd=request.getRequestDispatcher("/yourPrediction.jsp");
+			rd.forward(request, response);
+		}
+		else if(request.getParameter("return")!=null) {
+			RequestDispatcher rd=request.getRequestDispatcher("/using.jsp");
+			rd.forward(request, response);
 		}
 		else {
 			// if the user runs the servlet directly, they will be forwarded

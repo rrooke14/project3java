@@ -4,11 +4,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Prediction</title>
 </head>
 <body>
-	<form action="http://localhost:8080/servletIntro/ServletIntro"
-		method="get">
+	<h3>
+		<%
+		out.println("Hello " + request.getAttribute("username"));
+		%>
+		<br>
+		<%
+		out.println("\nPlease do prediction stuff");
+		%>
+	</h3>
+	<form action="http://localhost:8085/Project_3/DataServlet" method="get">
 		<%
 		String selectionText = (String) request.getAttribute("selectionList");
 		%>
