@@ -7,17 +7,22 @@
 <title>Activity</title>
 </head>
 <body>
-	<form action="http://localhost:8085/Project_3/DataServlet" method="get">
+	<form action="http://localhost:8085/Project_3/DataServlet"
+		method="post">
 		You decided to
 		<%
 	String activity = (String) request.getAttribute("activity");
-	out.println(" " + activity);
+	out.println(" " + (String) activity);
 	%>
 		<br> <input type="submit" value="Go to prediction page"
 			name="return">
 	</form>
 	<%
-	request.setAttribute("myact", request.getAttribute("activities"));
+	request.setAttribute("myact", activity);
+	String user = (String) request.getAttribute("username");
+	String pw = (String) request.getAttribute("password");
+	request.setAttribute("password", pw);
+	request.setAttribute("username", user);
 	%>
 </body>
 </html>
