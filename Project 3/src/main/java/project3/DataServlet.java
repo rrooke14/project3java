@@ -66,11 +66,12 @@ public class DataServlet extends HttpServlet {
 			String label5 = "windy";
 			String label5Value = "  <input type=\"checkbox\" id=\"windy\" name=\"windy\" value=\"Windy\">\r\n <label for=\"windy\">Is it windy?</label><br>";
 
+			int size = pred.size();
 			request.setAttribute(label2, label2Value);
 			request.setAttribute(label3, label3Value);
 			request.setAttribute(label4, label4Value);
 			request.setAttribute(label5, label5Value);
-			request.setAttribute("size", (Integer)pred.size());
+			request.setAttribute("size", size);
 			if(un.equals("md") && pw.equals("pw")){
 				RequestDispatcher rd=request.getRequestDispatcher("/using.jsp");
 				rd.forward(request,response);
@@ -131,12 +132,13 @@ public class DataServlet extends HttpServlet {
 			String label5 = "windy";
 			String label5Value = "  <input type=\"checkbox\" id=\"windy\" name=\"windy\" value=\"Windy\">\r\n <label for=\"windy\">Is it windy?</label><br>";
 
+			int size = pred.size();
 			request.setAttribute(label2, label2Value);
 			request.setAttribute(label3, label3Value);
 			request.setAttribute(label4, label4Value);
 			request.setAttribute(label5, label5Value);
 			pred.add((Instance)request.getAttribute("instance"));
-			request.setAttribute("size", (Integer)pred.size());
+			request.setAttribute("size", size);
 
 			request.setAttribute("username", un);
 			request.setAttribute("password", pw);
@@ -164,11 +166,12 @@ public class DataServlet extends HttpServlet {
 			String label5 = "windy";
 			String label5Value = "  <input type=\"checkbox\" id=\"windy\" name=\"windy\" value=\"Windy\">\r\n <label for=\"windy\">Is it windy?</label><br>";
 
+			int size = pred.size();
 			request.setAttribute(label2, label2Value);
 			request.setAttribute(label3, label3Value);
 			request.setAttribute(label4, label4Value);
 			request.setAttribute(label5, label5Value);
-			request.setAttribute("size", pred.size());
+			request.setAttribute("size", size);
 
 			request.setAttribute("username", un);
 			request.setAttribute("password", pw);
@@ -195,11 +198,12 @@ public class DataServlet extends HttpServlet {
 			String label5 = "windy";
 			String label5Value = "  <input type=\"checkbox\" id=\"windy\" name=\"windy\" value=\"Windy\">\r\n <label for=\"windy\">Is it windy?</label><br>";
 
+			int size = pred.size();
 			request.setAttribute(label2, label2Value);
 			request.setAttribute(label3, label3Value);
 			request.setAttribute(label4, label4Value);
 			request.setAttribute(label5, label5Value);
-			request.setAttribute("size", pred.size());
+			request.setAttribute("size", size);
 
 			request.setAttribute("username", un);
 			request.setAttribute("password", pw);		
