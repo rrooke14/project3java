@@ -9,13 +9,13 @@
 <body>
 	<form action="http://localhost:8085/Project_3/DataServlet"
 		method="post">
-		You decided to
+
 		<%
-	String activity = (String) request.getAttribute("activity");
-	out.println(" " + (String) activity);
-	%>
-		<br> <input type="submit" value="Go to prediction page"
-			name="return">
+		String activity = (String) request.getAttribute("activity");
+		out.println("You should " + (String) activity);
+		%>
+		<br> <input type="submit" value="Good Idea" name="return1">
+		<input type="submit" value="Bad Idea" name="return2">
 	</form>
 	<%
 	request.setAttribute("myact", activity);

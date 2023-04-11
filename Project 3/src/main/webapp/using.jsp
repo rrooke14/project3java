@@ -14,6 +14,9 @@
 		out.println("Hello " + user);
 		request.setAttribute("username", user);
 		request.setAttribute("password", password);
+		if(request.getAttribute("instance")!=null){
+			request.setAttribute("instance", request.getAttribute("instance"));
+		}
 		%>
 		<br>
 		<%
@@ -23,15 +26,18 @@
 	<form action="http://localhost:8085/Project_3/DataServlet"
 		method="post" name="selection">
 		<%
-		String selectionText = (String) request.getAttribute("selectionList");
+		//String selectionText = (String) request.getAttribute("selectionList");
 		String outlooks = (String) request.getAttribute("outlooks");
 		String humidity = (String) request.getAttribute("humidity");
 		String temperature = (String) request.getAttribute("temperature");
 		String windy = (String) request.getAttribute("windy");
+		Integer size = (Integer) request.getAttribute("size");
 		%>
-		Please select an activity:<br><%=selectionText%><br><br>Please select the outlook:<br><%=outlooks%><br>
+		Current size: <%=size%><br>
+		Please select the outlook:<br><%=outlooks%><br>
 		<%=humidity%><br><%=temperature%><br><%=windy%>
 		<input type="submit" value="Predict" name="doUsing">
+		<input type="submit" value="Delete Random (I tried to do most similar but couldn't)" name="doUsing2">
 	</form>
 </body>
 </html>

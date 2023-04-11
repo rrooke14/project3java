@@ -3,12 +3,14 @@
 package project3;
 
 import java.io.BufferedReader;
+import java.util.random.*;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Predictor {
 
@@ -145,7 +147,13 @@ public class Predictor {
 			}
 		}
 		if (highestScore == 0) { // if nothing similar could be found, default to take a nap
-			return null;
+			String condition = newInstance.getConditions();
+			int temp = newInstance.getTemperature();
+			int humidity = newInstance.getHumidity();
+			String wind = newInstance.getWindy();
+			String activity = "take a nap";
+			match = new Instance(condition, temp, humidity, wind, activity);
+			return match;
 		}
 		else {
 			return match; // grab activity of closest matching instance
@@ -153,7 +161,7 @@ public class Predictor {
 		
 	}	
 	// wrapper function for adding new Instance to arrayList
-	private void add(Instance newInstance) {
+	void add(Instance newInstance) {
 		instances.add(newInstance);
 	}
 	
@@ -179,6 +187,23 @@ public class Predictor {
 			toReturn += instance + "\n";
 		}
 		return toReturn;
+	}
+	
+	//size
+	public int size() {
+		return instances.size();
+	}
+	
+	//delete
+	public Instance delete() {
+		Random rnd = new Random();
+		Integer i = rnd.nextInt();
+		if(i < 0) {
+			i = i*-1;
+		}
+		int index = i % this.size();
+		Instance toreturn = instances.remove(index);
+		return toreturn;
 	}
 }
 
